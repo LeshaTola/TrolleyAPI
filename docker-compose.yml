@@ -9,9 +9,9 @@ services:
     container_name: app
     build:
       context: .
-      dockerfile: TrolleyAPI\Dockerfile
+      dockerfile: Dockerfile
     environment:
-          ASPNETCORE_URLS: https://+:80
+          ASPNETCORE_URLS: http://+:80
     ports:
         - "5000:80"
     networks:
