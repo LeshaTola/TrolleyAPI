@@ -6,14 +6,16 @@ networks:
 
 services:
   trolleyapi:
-    container_name: app
+    image: ${DOCKER_REGISTRY-}trolleyapi
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: TrolleyAPI/Dockerfile
     environment:
-          ASPNETCORE_URLS: https://+:80
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
-        - "5000:443"
+        - "5000:80"
+        - "5001:443"
     networks:
     - my-network
     depends_on:
