@@ -1,8 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using TrolleyAPI.DataLayer;
-using TrolleyAPI.DataLayer.DTO;
+using TrolleyAPI.Repositories.Choices;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+builder.Services.AddScoped<IChoiceRepository, ChoiceRepository>();
+
+builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -12,17 +18,16 @@ builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(c
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
-
-app.MapGet("/", () => "Welcome");
-app.MapGet("/Choices", (ApplicationContext db) => db.Choices.ToList());
-app.MapGet("/Choices/{level}", (ApplicationContext db, int level) => db.Choices.Where(C => C.Level.Equals(level)).ToList());
-app.MapPost("/Choices", (ApplicationContext db, Choice choice) =>
+if (app.Environment.IsDevelopment())
 {
-	db.Choices.Add(choice);
-	db.SaveChanges();
-	return choice;
-});
+	app.UseSwagger();
+	app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();

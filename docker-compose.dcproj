@@ -4,9 +4,9 @@
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <DockerPublishLocally>False</DockerPublishLocally>
-    <ProjectGuid>0fb02d5a-07d7-4fc5-83a2-1f49367c1c63</ProjectGuid>
+    <ProjectGuid>1ff077e2-710a-40c2-be0d-c2d12e428381</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>trolleyapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
