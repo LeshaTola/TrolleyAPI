@@ -21,7 +21,7 @@ services:
     networks:
     - my-network
     volumes:
-        - ./TrolleyAPI/https/aspnetapp.pfx:/TrolleyAPI/https/aspnetapp.pfx:ro
+        - ./TrolleyAPI/https/aspnetapp.pfx:/TrolleyAPI/https/aspnetapp.pfx
     depends_on:
     - database
 
