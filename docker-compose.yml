@@ -13,11 +13,15 @@ services:
     environment:
           - ASPNETCORE_ENVIRONMENT=Development
           - ASPNETCORE_URLS=https://+:443;http://+:80
+          - ASPNETCORE_Kestrel__Certificates__Default__Password=PA55W0RD
+          - ASPNETCORE_Kestrel__Certificates__Default__Path=/TrolleyAPI/https/aspnetapp.pfx
     ports:
         - "5000:80"
         - "5001:443"
     networks:
     - my-network
+    volumes:
+        - ./TrolleyAPI/https/aspnetapp.pfx:/TrolleyAPI/https/aspnetapp.pfx:ro
     depends_on:
     - database
 
